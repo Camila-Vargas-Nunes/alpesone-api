@@ -9,7 +9,7 @@ set -e  # Para o script se houver erro
 APP_NAME="alpesone-api"
 APP_DIR="/var/www/$APP_NAME"
 BACKUP_DIR="/var/backups/$APP_NAME"
-REPO_URL="https://github.com/seu-usuario/alpesone-api.git"
+REPO_URL="https://github.com/Camila-Vargas-Nunes/alpesone-api.git"
 BRANCH="main"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
