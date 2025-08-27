@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "alpesone-api-collection",
+		"name": "Alpes One API - Teste Técnico",
+		"description": "Collection para testar a API do teste técnico da Alpes One",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Integrator Data",
+			"item": [
+				{
+					"name": "List All Data (Paginated)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/integrator?per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Número de itens por página (padrão: 15, máximo: 100)"
+								}
+							]
+						},
+						"description": "Lista todos os dados do integrador com paginação"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Latest Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/integrator/latest",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator",
+								"latest"
+							]
+						},
+						"description": "Obtém os dados mais recentes do integrador"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Data by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/integrator/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator",
+								"1"
+							]
+						},
+						"description": "Obtém dados específicos por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"id\": 12345,\n    \"name\": \"Test Company\",\n    \"description\": \"This is a test company\",\n    \"status\": \"active\",\n    \"created_at\": \"2024-01-01 00:00:00\",\n    \"updated_at\": \"2024-01-01 00:00:00\"\n  },\n  \"source_url\": \"https://example.com/api/data\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/integrator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							]
+						},
+						"description": "Cria novos dados do integrador"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"id\": 12345,\n    \"name\": \"Updated Company Name\",\n    \"description\": \"This is an updated company description\",\n    \"status\": \"inactive\",\n    \"created_at\": \"2024-01-01 00:00:00\",\n    \"updated_at\": \"2024-01-01 00:00:00\"\n  },\n  \"source_url\": \"https://updated-example.com/api/data\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/integrator/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator",
+								"1"
+							]
+						},
+						"description": "Atualiza dados existentes por ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/integrator/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator",
+								"1"
+							]
+						},
+						"description": "Remove dados por ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gerenciar dados do integrador"
+		},
+		{
+			"name": "Authentication Tests",
+			"item": [
+				{
+					"name": "Test Without API Key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/integrator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							]
+						},
+						"description": "Testa acesso sem API Key (deve retornar 401)"
+					},
+					"response": []
+				},
+				{
+					"name": "Test With Invalid API Key",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "invalid-key",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/integrator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							]
+						},
+						"description": "Testa acesso com API Key inválida (deve retornar 401)"
+					},
+					"response": []
+				}
+			],
+			"description": "Testes de autenticação da API"
+		},
+		{
+			"name": "Validation Tests",
+			"item": [
+				{
+					"name": "Test Invalid Data Creation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": \"invalid data format\",\n  \"source_url\": \"not-a-valid-url\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/integrator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							]
+						},
+						"description": "Testa validação com dados inválidos (deve retornar 422)"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Empty Data Creation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "alpesone-test-2024",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/integrator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"integrator"
+							]
+						},
+						"description": "Testa validação com dados vazios (deve retornar 422)"
+					},
+					"response": []
+				}
+			],
+			"description": "Testes de validação de dados"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Log da requisição",
+					"console.log('Fazendo requisição para: ' + pm.request.url);",
+					"console.log('Método: ' + pm.request.method);",
+					"console.log('Headers: ' + JSON.stringify(pm.request.headers));"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Testes automáticos",
+					"pm.test('Status code is 200, 201, 401, 422, or 404', function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 401, 422, 404]);",
+					"});",
+					"",
+					"pm.test('Response has required structure', function () {",
+					"    const responseJson = pm.response.json();",
+					"    pm.expect(responseJson).to.have.property('success');",
+					"    if (pm.response.code === 200 || pm.response.code === 201) {",
+					"        pm.expect(responseJson.success).to.be.true;",
+					"    }",
+					"});",
+					"",
+					"pm.test('Response time is less than 2000ms', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "URL base da API (local ou produção)"
+		},
+		{
+			"key": "api_key",
+			"value": "alpesone-test-2024",
+			"type": "string",
+			"description": "API Key para autenticação"
+		}
+	]
+} 
