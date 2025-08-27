@@ -65,6 +65,38 @@ APP_API_KEY=alpesone-test-2024
 
 A API usa autenticação por API Key. Por padrão, a chave é `alpesone-test-2024`. Você pode alterá-la no arquivo `.env` ou no middleware `ApiAuthentication`.
 
+## 🌐 API em Produção
+
+### URL da API
+```
+http://13.59.99.198
+```
+
+### Status da API
+- ✅ **API funcionando**: 100% operacional
+- ✅ **Dados importados**: 39+ registros de carros
+- ✅ **Atualização automática**: A cada hora
+- ✅ **Autenticação**: API Key ativa
+
+### Exemplo de uso em produção
+```bash
+# Dados mais recentes
+curl "http://13.59.99.198/api/integrator/latest?api_key=alpesone-test-2024"
+
+# Lista paginada
+curl "http://13.59.99.198/api/integrator?api_key=alpesone-test-2024"
+
+# Teste de conectividade
+curl -I "http://13.59.99.198"
+```
+
+### Dados disponíveis na API
+A API fornece dados de carros incluindo:
+- **Marcas**: Hyundai, Chevrolet, Volkswagen, Mitsubishi, Jeep
+- **Modelos**: CRETA, TRACKER, HB20, TIGUAN, L200 TRITON
+- **Informações**: Preço, ano, km, cor, combustível, fotos
+- **Fonte**: Dados sincronizados da API Alpes One
+
 ## 📡 Uso da API
 
 ### Autenticação
@@ -81,18 +113,47 @@ curl "http://localhost:8000/api/integrator?api_key=alpesone-test-2024"
 
 ### Endpoints Disponíveis
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/api/integrator` | Lista todos os dados com paginação |
-| GET | `/api/integrator/{id}` | Obtém dados específicos |
-| GET | `/api/integrator/latest` | Obtém os dados mais recentes |
-| POST | `/api/integrator` | Cria novos dados |
-| PUT | `/api/integrator/{id}` | Atualiza dados existentes |
-| DELETE | `/api/integrator/{id}` | Remove dados |
+| Método | Endpoint | Descrição | Autenticação |
+|--------|----------|-----------|--------------|
+| GET | `/api/integrator` | Lista todos os dados com paginação | ✅ API Key |
+| GET | `/api/integrator/{id}` | Obtém dados específicos por ID | ✅ API Key |
+| GET | `/api/integrator/latest` | Obtém os dados mais recentes | ✅ API Key |
+| POST | `/api/integrator` | Cria novos dados | ✅ API Key |
+| PUT | `/api/integrator/{id}` | Atualiza dados existentes | ✅ API Key |
+| DELETE | `/api/integrator/{id}` | Remove dados | ✅ API Key |
+
+### Endpoints em Produção
+```
+http://13.59.99.198/api/integrator/latest?api_key=alpesone-test-2024
+http://13.59.99.198/api/integrator?api_key=alpesone-test-2024
+http://13.59.99.198/api/integrator/{id}?api_key=alpesone-test-2024
+```
 
 ### Parâmetros de Paginação
 
 - `per_page`: Número de itens por página (padrão: 15, máximo: 100)
+
+### 🧪 Teste Rápido da API
+
+#### Teste de conectividade
+```bash
+curl -I "http://13.59.99.198"
+```
+
+#### Teste da API com dados
+```bash
+# Dados mais recentes (deve retornar 39+ registros)
+curl "http://13.59.99.198/api/integrator/latest?api_key=alpesone-test-2024"
+
+# Lista paginada (primeira página)
+curl "http://13.59.99.198/api/integrator?api_key=alpesone-test-2024&per_page=5"
+```
+
+#### Teste sem autenticação (deve retornar erro)
+```bash
+curl "http://13.59.99.198/api/integrator/latest"
+# Resposta esperada: {"success":false,"message":"API key is required"}
+```
 
 ### Exemplos de Uso
 
